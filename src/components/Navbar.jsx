@@ -10,17 +10,26 @@ export default function Navbar() {
   };
   return (
     <div>
-      <nav className="bg-grey-800  grid grid-col-8">
-        <div className="item-center">Icon</div>
-        <div className="col-span-6 bg-dark">
+      <nav className="grid grid-cols-8 items-center bg-black">
+      <div>
+          <img
+            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+            alt=""
+            className="rounded-full h-16 w-16"
+          />
+        </div>
+        <div className="col-span-6 flex-rows items-center bg-dark">
           <input
+        
             onSubmit={onSearch}
             type="text"
             placeholder="Search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-gray-800 text-white"
+            className="bg-white h-8 items-center p-5 w-fit  mx-3"
           />
+          <button type='submit' className='bg-slate-500 p-2 rounded-xl' onClick={onSearch}>Search</button>
+
         </div>
         <div>
           <img
