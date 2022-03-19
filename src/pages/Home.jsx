@@ -22,13 +22,16 @@ export default function Home() {
               key={index}
             >
               <div className="w-full max-w-[25rem]">
-                <section className="h-48 w-full bg-gray-400">
+                <section className="h-48 w-full bg-gray-400 relative">
                   <img
                     className="w-full h-full bg-cover"
                     // className="h-40 w-fit border-2 my-2 items-center border-black"
                     src={item.videoThumbnail}
                     alt="img"
                   />
+                  <div className="absolute text-white bg-black bottom-3 right-3 py-[2px] px-1 text-sm rounded-sm">
+                    2:40
+                  </div>
                 </section>
                 <section className="flex items-start justify-start gap-3 mb-4 mt-2 mr-5 ml-2 sm:ml-0">
                   <div>
