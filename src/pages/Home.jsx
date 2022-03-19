@@ -2,54 +2,61 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 
 export default function Home() {
-  const myvid = Array(10).fill('');
+  const myvid = Array(40).fill({
+    title:
+      'Test Title Title TitleTitle Title Title Title Title Title Title Name title anaem title name tiele',
+    chanelName: 'Test chanell name that is too big to fit in one line',
+    time: new Date().toDateString(),
+    videoThumbnail: 'https://picsum.photos/300/200',
+    views: '2k',
+    chanelThumbnail: 'https://picsum.photos/300/200',
+  });
   return (
-    <div>
+    <div className="min-h-screen bg-zinc-900 text-white w-full">
       <Navbar />
-      <div className="container card ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {
-          myvid.map((item, index) => (
-          <div className='bg-black text-white'>
-            <img className='h-40 w-fit border-2 my-2 items-center border-black' src='https://picsum.photos/200/300' alt='img' />
-            <div className='flex flex-rows mx-1'>
-              <div>
-                <img className='rounded-full h-10 w-10 p-2 border-2 border-black' src='https://picsum.photos/200/300' alt='img' />
-              </div>
-              <div>
-                <h3 className='text-xl mx-2 '>Title</h3>
-                <p className='text-sm mb-4 mx-2'>Descr</p>
+      <main>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-0 sm:px-5 md:px-12 py-12 gap-x-5 gap-y-10">
+          {myvid.map((item, index) => (
+            <div
+              className="w-full flex items-center justify-center"
+              key={index}
+            >
+              <div className="w-full max-w-[25rem]">
+                <section className="h-48 w-full bg-gray-400">
+                  <img
+                    className="w-full h-full bg-cover"
+                    // className="h-40 w-fit border-2 my-2 items-center border-black"
+                    src={item.videoThumbnail}
+                    alt="img"
+                  />
+                </section>
+                <section className="flex items-start justify-start gap-3 mb-4 mt-2 mr-5 ml-2 sm:ml-0">
+                  <div>
+                    <img
+                      className="rounded-full h-10 w-10"
+                      src="https://picsum.photos/200/200"
+                      alt="img"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[1.1rem] leading-6 font-medium overflow-hidden line-clamp-2 text-ellipsis whitespace-normal">
+                      {item.title}
+                    </p>
+                    <p className="text-[0.9rem] text-[#aaa] mt-2 overflow-hidden line-clamp-1 text-ellipsis whitespace-normal">
+                      {item.chanelName}
+                    </p>
+                    <div className="flex items-center gap-2 text-[#aaa]">
+                      <p className="text-[0.9rem]">{item.views} views</p>
+                      <div className="w-1 h-1 rounded-full bg-[#aaa]"></div>
+                      <p className="text-[0.9rem]">{item.time}</p>
+                    </div>
+                  </div>
+                </section>
               </div>
             </div>
-          </div>
           ))}
         </div>
-
-      </div>
-
+      </main>
     </div>
   );
 }
-
-{/* <div class="grid grid-rows-4 grid-flow-col gap-4">
-{myvid.map((item, index) => (
-  <div className="col-span-1 border-1 border-yellow-50" key={index}>
-    <div className="card">
-      <div className="card-body grid grid-col-3">
-        <div className="col-span-2">
-          <img src="https://picsum.photos/200/300" className='w-full' alt="img" />
-        </div>
-        <div>
-          <h5>Title</h5>
-          <p>Description</p>
-        </div>
-      </div>
-    </div>
-  </div>
-))}
-</div>
-</div> */}
-
-
-// concern
-// how to fit image to width

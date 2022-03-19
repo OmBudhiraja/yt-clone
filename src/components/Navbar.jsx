@@ -17,7 +17,7 @@ export default function Navbar() {
   };
   return (
     <div className="sticky top-0">
-      <nav className="flex justify-between gap-8 items-center bg-zinc-900 bg-opacity-95 px-4 sm:px-12 py-3 border-b border-zinc-500 min-h-[69px]">
+      <nav className="flex justify-between gap-8 items-center bg-zinc-800 bg-opacity-95 px-4 sm:px-12 py-3 border-b border-zinc-500 min-h-[69px]">
         {showSearchBarOnFullNav ? (
           <>
             <BsArrowLeft
