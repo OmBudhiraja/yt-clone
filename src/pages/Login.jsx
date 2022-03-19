@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { BiHide, BiShow, BiLoaderAlt } from 'react-icons/bi';
+import { BsGoogle, BsGithub } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import http from "utils/http";
 
 const AdminSignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,24 +14,23 @@ const AdminSignInForm = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    // if (loginData.email && loginData.password) {
-    //   try {
-    //     setLoadingRes(true);
+    if (loginData.email && loginData.password) {
+      try {
+        setLoadingRes(true);
 
-    //     const res = await http.post("/auth/login", {
-    //       email: loginData.email,
-    //       password: loginData.password,
-    //     });
+        // TODO: make login request
+        // const res = await axios.post("/auth/login", {
+        //   email: loginData.email,
+        //   password: loginData.password,
+        // });
 
-    //     console.log(res);
-    //     setLoadingRes(false);
-    //     toast.success("Signed successfully");
-    //     // router.push("/admin-panel/dashboard");
-    //   } catch (err) {
-    //     setLoadingRes(false);
-    //     toast.error(err.response?.data?.message || "Something Went Wrong.");
-    //   }
-    // }
+        setLoadingRes(false);
+        toast.success('Signed successfully');
+      } catch (err) {
+        setLoadingRes(false);
+        toast.error(err.response?.data?.message || 'Something Went Wrong.');
+      }
+    }
   };
 
   const onChangeHandler = (e) => {
@@ -41,8 +41,8 @@ const AdminSignInForm = () => {
   };
 
   return (
-    <div className="h-screen bg-zinc-900 flex items-center justify-center px-6">
-      <div className="bg-zinc-800 text-white px-3 py-7 sm:p-6 rounded-xl w-96 max-w-full ">
+    <main className="min-h-screen bg-zinc-900 flex items-center justify-center px-6">
+      <section className="bg-zinc-800 text-white px-3 py-7 sm:py-6 sm:px-9 rounded-xl w-[32rem] max-w-full ">
         <h1 className="text-3xl text-center mb-8 text-blue-300 font-bold">
           Sign In Here...
         </h1>
@@ -52,7 +52,7 @@ const AdminSignInForm = () => {
               Email:
             </label>
             <input
-              className="bg-zinc-900 border-none outline-none px-3 py-2 rounded w-full placeholder-zinc-700"
+              className="bg-zinc-900 border-none outline-0 outline outline-gray-400 px-3 py-2 rounded w-full placeholder-zinc-700 focus:outline-2"
               type="email"
               name="email"
               id="email"
@@ -69,7 +69,7 @@ const AdminSignInForm = () => {
             </label>
             <div className="relative ">
               <input
-                className="bg-zinc-900 border-2 border-transparent outline-none pl-3 pr-8 py-2 rounded w-full placeholder-zinc-700 tracking-wider focus:border-2 focus:border-gray-600"
+                className="bg-zinc-900 border-none outline-0 outline outline-gray-400 pl-3 pr-8 py-2 rounded w-full placeholder-zinc-700 tracking-wider focus:outline-2"
                 type={showPassword ? 'text' : 'password'}
                 id="pasword"
                 name="password"
@@ -90,7 +90,7 @@ const AdminSignInForm = () => {
           <button
             role="form"
             disabled={loadingRes}
-            className="bg-blue-700 px-5 py-2 w-full rounded-md mt-5 text-center disabled:bg-blue-500 hover:bg-blue-800 active:outline outline-2 outline-gray-400"
+            className="bg-blue-700 px-5 py-2 w-full rounded-md mt-5 mb-7 text-center disabled:bg-blue-500 hover:bg-blue-800 active:outline outline-2 outline-gray-400"
           >
             {loadingRes ? (
               <BiLoaderAlt size={'20px'} className="inline animate-spin" />
@@ -99,8 +99,32 @@ const AdminSignInForm = () => {
             )}
           </button>
         </form>
-      </div>
-    </div>
+        <div className="flex items-center">
+          <span className="flex-1 w-full h-[0.5px] bg-gray-500"></span>
+          <span className="px-3 text-gray-400">Or Continue with</span>
+          <span className="flex-1 w-full h-[0.5px] bg-gray-500"></span>
+        </div>
+        <div className="flex items-center justify-center gap-3 md:gap-5 mt-5">
+          <button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-200 bg-zinc-900 border border-zinc-700 rounded-md shadow-sm disabled:cursor-wait disabled:opacity-50 hover:bg-opacity-80">
+            <span className="sr-only">Sign in with Google</span>
+            <BsGoogle size={22} />
+          </button>
+          <button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-200 bg-zinc-900 border border-zinc-700 rounded-md shadow-sm disabled:cursor-wait disabled:opacity-50 hover:bg-opacity-80">
+            <span className="sr-only">Sign in with Github</span>
+            <BsGithub size={22} />
+          </button>
+        </div>
+        <div className="mt-8 mb-2 text-gray-300">
+          <p className="text-center">
+            Don't have an Account?
+            <Link to={'/register'} className="text-blue-500 font-semibold">
+              {' '}
+              Create One
+            </Link>
+          </p>
+        </div>
+      </section>
+    </main>
   );
 };
 
